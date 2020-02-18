@@ -1,0 +1,21 @@
+version: "3"
+services:
+    elasticsearch_service:
+        environment:
+            - "discovery.type=single-node"
+        image: elasticsearch:7.6.0
+        volumes:
+            - "esdata1:/usr/share/elasticsearch/data"
+        ports:
+            - "9200:9200"
+    sparkstreamer:
+        container_name: "sparkstreamer"
+        image: "dariuszlee/sparkstream_elastic:latest"
+        volumes:
+            - "./stream:/spark_app/stream"
+        command:
+            - "3.6"
+            - "elasticsearch_service"
+volumes:
+  esdata1:
+    driver: local

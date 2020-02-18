@@ -15,4 +15,7 @@ RUN yum install nmap -y
 COPY spark_app /spark_app
 WORKDIR /spark_app
 
-EXPOSE 2000
+VOLUME /spark_app/stream
+
+ENTRYPOINT ["./submit_stream.sh"]
+CMD ["3.6", "elasticesearch_service"]

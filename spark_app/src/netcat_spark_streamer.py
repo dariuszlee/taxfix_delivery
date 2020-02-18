@@ -2,11 +2,10 @@ import sys
 import json
 from pyspark import SparkContext, SparkConf
 from pyspark.streaming import StreamingContext
-from heapq import nlargest
 from spark_streamer_service import line_to_json, saveStateFunc, INVALID_EVENT
 
 es_write_conf = {
-        "es.nodes" : '0.0.0.0',
+        "es.nodes" : sys.argv[3],
         "es.port" : '9200',
         "es.resource" : 'spark/data',
         "es.input.json" : "yes",

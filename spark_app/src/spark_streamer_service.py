@@ -1,5 +1,6 @@
 import json
 from urllib.parse import urlparse
+from heapq import nlargest
 
 INVALID_EVENT = (-1, ("", -1))
 MAX_EVENTS = 5
